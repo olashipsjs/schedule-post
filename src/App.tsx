@@ -15,9 +15,9 @@ const App = () => {
           >
             <Form>
               <Field name='message'>
-                <Field.Sheet className={twMerge('rounded-2xl flex-col')}>
+                <Field.Sheet className={twMerge('rounded-3xl flex-col')}>
                   <Textarea placeholder={"What's up?"} />
-                  <div className='flex gap-2 items-center justify-end p-2'>
+                  <div className='flex gap-2 items-center justify-end p-1.5'>
                     <Button>Post</Button>
                   </div>
                 </Field.Sheet>

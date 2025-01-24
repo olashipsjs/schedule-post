@@ -48,7 +48,7 @@ const Textarea = ({
       onChange={handleChange}
       value={field.value as any}
       className={twMerge(
-        'w-full outline-0 resize-none text-gray-900 font-medium placeholder:text-gray-400 placeholder:font-normal py-2 px-3',
+        'w-full outline-0 resize-none text-gray-900 font-medium placeholder:text-gray-400 placeholder:font-normal p-3',
         className
       )}
     />
