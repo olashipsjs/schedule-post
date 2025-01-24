@@ -15,10 +15,19 @@ const App = () => {
           >
             <Form>
               <Field name='message'>
-                <Field.Sheet className={twMerge('rounded-3xl flex-col')}>
-                  <Textarea placeholder={"What's up?"} />
-                  <div className='flex gap-2 items-center justify-end p-1.5'>
-                    <Button>Post</Button>
+                <Field.Sheet
+                  className={twMerge('rounded-3xl flex-col bg-gray-100')}
+                >
+                  <div className='bg-white rounded-3xl overflow-clip border-b border-b-gray-200'>
+                    <Textarea placeholder={"What's up?"} />
+                    <div className='flex gap-2 items-center justify-end p-1.5'>
+                      <Button>Post</Button>
+                    </div>
+                  </div>
+                  <div className='p-2'>
+                    <p className='text-center text-gray-500 text-sm font-medium'>
+                      Will be posted on 25 Feb, 9:30AM
+                    </p>
                   </div>
                 </Field.Sheet>
               </Field>
