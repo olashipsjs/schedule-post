@@ -14,22 +14,27 @@ const App = () => {
             onSubmit={() => null!}
           >
             <Form>
-              <Field name='message'>
+              <Field
+                name='message'
+                className={twMerge(
+                  'rounded-3xl flex-col ring-1 ring-gray-200 bg-gray-100 flex overflow-clip'
+                )}
+              >
                 <Field.Sheet
-                  className={twMerge('rounded-3xl flex-col bg-gray-100')}
+                  className={twMerge(
+                    'bg-white rounded-3xl overflow-clip ring-1 ring-gray-200 flex-col'
+                  )}
                 >
-                  <div className='bg-white rounded-3xl overflow-clip ring-1 ring-gray-200'>
-                    <Textarea placeholder={"What's up?"} />
-                    <div className='flex gap-2 items-center justify-end p-2'>
-                      <Button>Post</Button>
-                    </div>
-                  </div>
-                  <div className='p-1.5'>
-                    <p className='text-center text-gray-500 text-sm font-medium'>
-                      Will be posted on 25 Feb, 9:30AM
-                    </p>
+                  <Textarea placeholder={"What's up?"} />
+                  <div className='flex gap-2 items-center justify-end p-2'>
+                    <Button>Post</Button>
                   </div>
                 </Field.Sheet>
+                <div className='p-1.5'>
+                  <p className='text-center text-gray-500 text-sm font-medium'>
+                    Will be posted on 25 Feb, 9:30AM
+                  </p>
+                </div>
               </Field>
             </Form>
           </Formik>
