@@ -11,6 +11,16 @@ const Textarea = ({
   ...restProps
 }: React.ComponentProps<'textarea'>) => {
   const { field, helper } = useField();
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null!);
+
+  React.useEffect(() => {
+    const target = textareaRef.current;
+
+    if (!target) return;
+
+    target.style.height = 'auto';
+    target.style.height = target.scrollHeight + 'px';
+  }, [field.value]);
 
   const handleChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = ev.target.value;
@@ -31,6 +41,7 @@ const Textarea = ({
   return (
     <textarea
       {...restProps}
+      ref={textareaRef}
       onBlur={handleBlur}
       onFocus={handleFocus}
       onChange={handleChange}
