@@ -7,10 +7,15 @@ const App = () => {
     <main className='flex flex-col items-center justify-center bg-gray-50 min-h-screen'>
       <section>
         <div className='max-w-[400px] mx-auto p-3 w-full'>
-          <Formik>
+          <Formik
+            initialValues={{ message: '' }}
+            onSubmit={() => null!}
+          >
             <Form>
               <Field name='message'>
-                <Textarea placeholder={"What's up?"} />
+                <Field.Sheet>
+                  <Textarea placeholder={"What's up?"} />
+                </Field.Sheet>
               </Field>
             </Form>
           </Formik>

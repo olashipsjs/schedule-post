@@ -18,7 +18,10 @@ const Sheet = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
   return (
     <div
       {...restProps}
-      className={twMerge('ring-1 ring-gray-200', className)}
+      className={twMerge(
+        'ring-1 ring-gray-200 rounded-lg overflow-clip w-full flex',
+        className
+      )}
     />
   );
 };
