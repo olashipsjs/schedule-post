@@ -22,7 +22,7 @@ const Sheet = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
     <div
       {...restProps}
       className={twMerge(
-        'ring-1 ring-gray-200 rounded-lg overflow-clip w-full flex hover:ring-gray-400 transition-all duration-200 ease-in-out',
+        'ring-1 ring-gray-200 rounded-lg overflow-clip w-full flex hover:ring-gray-400 transition-all duration-200 ease-in-out bg-white',
         meta.touched && 'ring-blue-500 ring-2 hover:ring-blue-500',
         className
       )}
