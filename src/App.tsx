@@ -1,6 +1,7 @@
 import { Form, Formik } from 'formik';
 import Textarea from './components/textarea/Textarea';
 import Field from './components/field/Field';
+import { twMerge } from 'tailwind-merge';
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
           >
             <Form>
               <Field name='message'>
-                <Field.Sheet>
+                <Field.Sheet className={twMerge('rounded-3xl')}>
                   <Textarea placeholder={"What's up?"} />
                 </Field.Sheet>
               </Field>

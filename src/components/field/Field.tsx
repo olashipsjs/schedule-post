@@ -1,6 +1,7 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import FieldProvider from './Provider';
+import useField from './hook';
 
 const Compound = ({
   name = '',
@@ -15,11 +16,14 @@ const Compound = ({
 };
 
 const Sheet = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
+  const { meta } = useField();
+
   return (
     <div
       {...restProps}
       className={twMerge(
-        'ring-1 ring-gray-200 rounded-lg overflow-clip w-full flex',
+        'ring-1 ring-gray-200 rounded-lg overflow-clip w-full flex hover:ring-gray-400',
+        meta.touched && 'ring-blue-500 ring-2',
         className
       )}
     />

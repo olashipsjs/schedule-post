@@ -40,14 +40,17 @@ const Textarea = ({
 
   return (
     <textarea
+      rows={rows}
       {...restProps}
       ref={textareaRef}
       onBlur={handleBlur}
       onFocus={handleFocus}
       onChange={handleChange}
       value={field.value as any}
-      rows={rows}
-      className={twMerge('w-full outline-0 resize-none', className)}
+      className={twMerge(
+        'w-full outline-0 resize-none text-gray-900 font-medium placeholder:text-gray-400 placeholder:font-normal py-2 px-3',
+        className
+      )}
     />
   );
 };
