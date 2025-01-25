@@ -55,7 +55,9 @@ const App = () => {
                       >
                         Schedule
                       </Button>
-                    ) : null}
+                    ) : (
+                      <div></div>
+                    )}
                     <Button id='action-btn'>Post</Button>
                   </div>
                 </Field.Sheet>
