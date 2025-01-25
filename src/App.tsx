@@ -15,10 +15,16 @@ const App = () => {
   useGSAP(() => {
     gsap.to('#notification', {
       duration: 0.2,
-      ease: 'elastic.inOut',
+      ease: 'power4.inOut',
       zIndex: isHidden ? -1 : 1,
       marginTop: isHidden ? -32 : 0,
       opacity: isHidden ? 0 : 1,
+    });
+
+    gsap.to('#schedule-btn', {
+      duration: 0.3,
+      transformOrigin: 'center',
+      width: isHidden ? '0%' : '100%',
     });
   }, [isHidden]);
 
@@ -43,32 +49,28 @@ const App = () => {
                   )}
                 >
                   <Textarea placeholder={"What's up?"} />
-                  <div
-                    className={twMerge(
-                      'flex gap-2 justify-end p-2',
-                      isHidden ? 'flex-row items-center' : 'flex-col'
-                    )}
-                  >
-                    {isHidden ? (
-                      <div className='flex gap-2'>
-                        <Button
-                          onClick={() => setIsHidden(false)}
-                          className={'bg-gray-200 text-gray-900 p-2'}
-                        >
-                          <CalenderIcon />
-                        </Button>
-                        <Button id='post-btn'>Post</Button>
-                      </div>
-                    ) : (
+                  <div className='p-2 flex flex-col gap-2'>
+                    <div className='flex gap-2 justify-end items-stretch'>
+                      <Button
+                        onClick={() => setIsHidden(false)}
+                        className={'bg-gray-200 text-gray-900 p-2'}
+                      >
+                        <CalenderIcon />
+                      </Button>
+                      <Button id='post-btn'>Post</Button>
+                    </div>
+
+                    <div className='flex gap-2 justify-center items-center flex-col'>
                       <div className='bg-gray-100 p-0.5 w-full rounded-full'>
                         <Button
                           onClick={() => setIsHidden(true)}
-                          className={'bg-gray-200 p-0.5 text-gray-500 size-6'}
+                          className={'bg-transparent p-1.5 text-gray-500'}
                         >
                           <DismissIcon />
                         </Button>
                       </div>
-                    )}
+                      <Button id='schedule-btn'>Schedule</Button>
+                    </div>
                   </div>
                 </Field.Sheet>
                 <div
