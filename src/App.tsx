@@ -13,12 +13,6 @@ const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
 
   useGSAP(() => {
-    gsap.to('#action-btn', {
-      duration: 0.2,
-      ease: 'elastic.inOut',
-      transformOrigin: 'center',
-      scaleX: isHidden ? '100%' : '100%',
-    });
     gsap.to('#notification', {
       duration: 0.2,
       ease: 'elastic.inOut',
@@ -56,12 +50,15 @@ const App = () => {
                     )}
                   >
                     {isHidden ? (
-                      <Button
-                        onClick={() => setIsHidden(false)}
-                        className={'bg-gray-200 text-gray-900 p-2'}
-                      >
-                        <CalenderIcon />
-                      </Button>
+                      <div className='flex gap-2'>
+                        <Button
+                          onClick={() => setIsHidden(false)}
+                          className={'bg-gray-200 text-gray-900 p-2'}
+                        >
+                          <CalenderIcon />
+                        </Button>
+                        <Button id='post-btn'>Post</Button>
+                      </div>
                     ) : (
                       <div className='bg-gray-100 p-0.5 w-full rounded-full'>
                         <Button
@@ -72,12 +69,6 @@ const App = () => {
                         </Button>
                       </div>
                     )}
-                    <Button
-                      className='w-full'
-                      id='action-btn'
-                    >
-                      Post
-                    </Button>
                   </div>
                 </Field.Sheet>
                 <div
