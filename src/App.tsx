@@ -61,7 +61,7 @@ const App = () => {
                 </Field.Sheet>
                 <div
                   id='notification'
-                  className='p-1.5'
+                  className='p-1.5 mt-[-32px] opacity-0 -z-10'
                 >
                   <p className='text-center text-gray-500 text-sm font-medium'>
                     Will be posted on 25 Feb, 9:30AM
