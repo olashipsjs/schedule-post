@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import React from 'react';
 import gsap from 'gsap';
 import DismissIcon from './components/icons/DismissIcon';
+import CalenderIcon from './components/icons/CalenderIcon';
 
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
@@ -14,12 +15,13 @@ const App = () => {
   useGSAP(() => {
     gsap.to('#action-btn', {
       duration: 0.2,
-      ease: 'power3.inOut',
-      width: isHidden ? 'fit-content' : '100%',
+      ease: 'elastic.inOut',
+      transformOrigin: 'center',
+      scaleX: isHidden ? '100%' : '100%',
     });
     gsap.to('#notification', {
       duration: 0.2,
-      ease: 'power3.inOut',
+      ease: 'elastic.inOut',
       zIndex: isHidden ? -1 : 1,
       marginTop: isHidden ? -32 : 0,
       opacity: isHidden ? 0 : 1,
@@ -55,16 +57,14 @@ const App = () => {
                   >
                     {isHidden ? (
                       <Button
-                        id='switch-btn'
-                        onClick={() => setIsHidden(!isHidden)}
-                        className={'bg-gray-200 text-gray-900'}
+                        onClick={() => setIsHidden(false)}
+                        className={'bg-gray-200 text-gray-900 p-2'}
                       >
-                        Schedule
+                        <CalenderIcon />
                       </Button>
                     ) : (
                       <div className='bg-gray-100 p-0.5 w-full rounded-full'>
                         <Button
-                          id='switch-btn'
                           onClick={() => setIsHidden(true)}
                           className={'bg-gray-200 p-0.5 text-gray-500 size-6'}
                         >
@@ -72,7 +72,12 @@ const App = () => {
                         </Button>
                       </div>
                     )}
-                    <Button id='action-btn'>Post</Button>
+                    <Button
+                      className='w-full'
+                      id='action-btn'
+                    >
+                      Post
+                    </Button>
                   </div>
                 </Field.Sheet>
                 <div
