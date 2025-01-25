@@ -56,7 +56,7 @@ const App = () => {
                         Schedule
                       </Button>
                     ) : (
-                      <div></div>
+                      <div className='bg-gray-100 p-0.5 w-ful'></div>
                     )}
                     <Button id='action-btn'>Post</Button>
                   </div>
