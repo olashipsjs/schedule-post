@@ -6,6 +6,7 @@ import Button from './components/button/Button';
 import { useGSAP } from '@gsap/react';
 import React from 'react';
 import gsap from 'gsap';
+import DismissIcon from './components/icons/DismissIcon';
 
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
@@ -46,7 +47,12 @@ const App = () => {
                   )}
                 >
                   <Textarea placeholder={"What's up?"} />
-                  <div className='flex gap-2 items-center justify-end p-2'>
+                  <div
+                    className={twMerge(
+                      'flex gap-2 justify-end p-2',
+                      isHidden ? 'flex-row items-center' : 'flex-col'
+                    )}
+                  >
                     {isHidden ? (
                       <Button
                         id='switch-btn'
@@ -56,7 +62,15 @@ const App = () => {
                         Schedule
                       </Button>
                     ) : (
-                      <div className='bg-gray-100 p-0.5 w-ful'></div>
+                      <div className='bg-gray-100 p-0.5 w-full rounded-full'>
+                        <Button
+                          id='switch-btn'
+                          onClick={() => setIsHidden(true)}
+                          className={'bg-gray-200 p-0.5 text-gray-500 size-6'}
+                        >
+                          <DismissIcon />
+                        </Button>
+                      </div>
                     )}
                     <Button id='action-btn'>Post</Button>
                   </div>
