@@ -3,16 +3,41 @@ import Textarea from './components/textarea/Textarea';
 import Field from './components/field/Field';
 import { twMerge } from 'tailwind-merge';
 import Button from './components/button/Button';
-import { useGSAP } from '@gsap/react';
 import React from 'react';
 import gsap from 'gsap';
 import DismissIcon from './components/icons/DismissIcon';
 import CalenderIcon from './components/icons/CalenderIcon';
+import { useGSAP } from '@gsap/react';
 
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
 
   useGSAP(() => {
+    gsap.to('#post-box', {
+      duration: 0.1,
+      opacity: isHidden ? 1 : 0,
+      height: isHidden ? 'auto' : 0,
+      visibility: isHidden ? 'visible' : 'hidden',
+    });
+
+    gsap.to('#schedule-box', {
+      duration: 0.1,
+      opacity: isHidden ? 0 : 1,
+      width: isHidden ? 0 : '100%',
+      height: isHidden ? 0 : 'auto',
+      visibility: isHidden ? 'hidden' : 'visible',
+    });
+
+    gsap.to('.scaleX', {
+      delay: 0.1,
+      duration: 0.4,
+      ease: 'back.inOut',
+      transformOrigin: 'center',
+      opacity: isHidden ? 0 : 1,
+      width: isHidden ? 'fit-content' : '100%',
+      stagger: 0.2,
+    });
+
     gsap.to('#notification', {
       duration: 0.2,
       ease: 'power4.inOut',
@@ -20,13 +45,11 @@ const App = () => {
       marginTop: isHidden ? -32 : 0,
       opacity: isHidden ? 0 : 1,
     });
-
-    gsap.to('#schedule-btn', {
-      duration: 0.3,
-      transformOrigin: 'center',
-      width: isHidden ? '0%' : '100%',
-    });
   }, [isHidden]);
+
+  const handleSchedule = () => {
+    setIsHidden((prev) => !prev);
+  };
 
   return (
     <main className='flex flex-col items-center justify-center bg-gray-50 min-h-screen'>
@@ -49,10 +72,13 @@ const App = () => {
                   )}
                 >
                   <Textarea placeholder={"What's up?"} />
-                  <div className='p-2 flex flex-col gap-2'>
-                    <div className='flex gap-2 justify-end items-stretch'>
+                  <div className='p-2'>
+                    <div
+                      id={'post-box'}
+                      className='flex gap-2 justify-end items-stretch'
+                    >
                       <Button
-                        onClick={() => setIsHidden(false)}
+                        onClick={() => handleSchedule()}
                         className={'bg-gray-200 text-gray-900 p-2'}
                       >
                         <CalenderIcon />
@@ -60,8 +86,11 @@ const App = () => {
                       <Button id='post-btn'>Post</Button>
                     </div>
 
-                    <div className='flex gap-2 justify-center items-center flex-col'>
-                      <div className='bg-gray-100 p-0.5 w-full rounded-full'>
+                    <div
+                      id='schedule-box'
+                      className='flex gap-2 justify-center items-center flex-col'
+                    >
+                      <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX'>
                         <Button
                           onClick={() => setIsHidden(true)}
                           className={'bg-transparent p-1.5 text-gray-500'}
@@ -69,7 +98,7 @@ const App = () => {
                           <DismissIcon />
                         </Button>
                       </div>
-                      <Button id='schedule-btn'>Schedule</Button>
+                      <Button className='scaleX'>Schedule</Button>
                     </div>
                   </div>
                 </Field.Sheet>
