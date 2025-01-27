@@ -41,7 +41,7 @@ const App = () => {
       ease: 'back.inOut',
       opacity: isHidden ? 0 : 1,
       zIndex: isHidden ? -1 : 1,
-      delay: isHidden ? 0.1 : 0.3,
+      delay: isHidden ? 0.15 : 0.3,
       marginTop: isHidden ? -32 : 0,
     });
   }, [isHidden]);
@@ -71,7 +71,7 @@ const App = () => {
                   )}
                 >
                   <Textarea placeholder={"What's up?"} />
-                  <div className='p-2 min-h-24 flex flex-col justify-end'>
+                  <div className='p-2 min-h-28 flex flex-col justify-end'>
                     <div
                       id={'post-box'}
                       className='flex gap-2 justify-end items-stretch'
