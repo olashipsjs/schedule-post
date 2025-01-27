@@ -1,7 +1,7 @@
+import gsap from 'gsap';
 import React from 'react';
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import useOverlay from './useOverlay';
+import useOverlay from './hook';
 import OverlayProvider from './Provider';
 import Button from '../components/button/Button';
 
@@ -71,3 +71,5 @@ const Overlay = Compound as typeof Compound & {
 
 Overlay.Trigger = Trigger;
 Overlay.Content = Content;
+
+export default Overlay;
