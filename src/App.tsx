@@ -29,21 +29,20 @@ const App = () => {
     });
 
     gsap.to('.scaleX', {
-      delay: 0.1,
+      stagger: 0.1,
       duration: 0.4,
       ease: 'back.inOut',
-      transformOrigin: 'center',
       opacity: isHidden ? 0 : 1,
       width: isHidden ? 'fit-content' : '100%',
-      stagger: 0.2,
     });
 
     gsap.to('#notification', {
-      duration: 0.2,
-      ease: 'power4.inOut',
-      zIndex: isHidden ? -1 : 1,
-      marginTop: isHidden ? -32 : 0,
+      duration: 0.3,
+      ease: 'back.inOut',
       opacity: isHidden ? 0 : 1,
+      zIndex: isHidden ? -1 : 1,
+      delay: isHidden ? 0.1 : 0.3,
+      marginTop: isHidden ? -32 : 0,
     });
   }, [isHidden]);
 
@@ -72,7 +71,7 @@ const App = () => {
                   )}
                 >
                   <Textarea placeholder={"What's up?"} />
-                  <div className='p-2'>
+                  <div className='p-2 min-h-24 flex flex-col justify-end'>
                     <div
                       id={'post-box'}
                       className='flex gap-2 justify-end items-stretch'
@@ -88,8 +87,9 @@ const App = () => {
 
                     <div
                       id='schedule-box'
-                      className='flex gap-2 justify-center items-center flex-col'
+                      className='flex gap-2 justify-center items-center flex-col-reverse'
                     >
+                      <Button className='scaleX'>Schedule</Button>
                       <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX'>
                         <Button
                           onClick={() => setIsHidden(true)}
@@ -98,7 +98,6 @@ const App = () => {
                           <DismissIcon />
                         </Button>
                       </div>
-                      <Button className='scaleX'>Schedule</Button>
                     </div>
                   </div>
                 </Field.Sheet>
