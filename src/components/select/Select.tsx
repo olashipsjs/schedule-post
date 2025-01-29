@@ -3,9 +3,31 @@ import useField from '../field/hook';
 import Button from '../button/Button';
 import Overlay from '../../overlay/Overlay';
 import useOverlay from '../../overlay/hook';
+import { twMerge } from 'tailwind-merge';
+import SelectProvider from './Provider';
+import useSelect from './hook';
 
-const Compound = ({ ...restProps }: React.ComponentProps<typeof Overlay>) => {
-  return <Overlay {...restProps} />;
+const Compound = ({
+  className,
+  ...restProps
+}: Omit<
+  React.ComponentProps<typeof SelectProvider>,
+  keyof React.ComponentProps<typeof Overlay>
+> &
+  React.ComponentProps<typeof Overlay>) => {
+  return (
+    <SelectProvider>
+      {({ ref }) => {
+        return (
+          <Overlay
+            {...restProps}
+            ref={ref as any}
+            className={twMerge('w-full', className)}
+          />
+        );
+      }}
+    </SelectProvider>
+  );
 };
 
 const Value = ({
@@ -26,6 +48,7 @@ const Value = ({
 const Option = ({
   value,
   onClick,
+  className,
   ...restProps
 }: React.ComponentProps<typeof Button> & { value: any }) => {
   const { helper } = useField();
@@ -41,6 +64,45 @@ const Option = ({
     <Button
       {...restProps}
       onClick={handleClick}
+      className={twMerge('w-full', className)}
+    />
+  );
+};
+
+const Content = ({
+  className,
+  ...restProps
+}: React.ComponentProps<typeof Overlay.Content>) => {
+  const { isOpen } = useOverlay();
+  const { rect, position, setPosition } = useSelect();
+
+  React.useEffect(() => {
+    if (isOpen && rect) {
+      const viewportHeight = window.innerHeight;
+
+      if (rect.bottom + 200 > viewportHeight) {
+        setPosition('top');
+      } else {
+        setPosition('bottom');
+      }
+    }
+  }, [isOpen, rect]);
+
+  if (!rect) return null;
+
+  return (
+    <Overlay.Content
+      {...restProps}
+      className={twMerge('ring-1 ring-gray-200 shadow-sm', className)}
+      style={{
+        zIndex: 999,
+        left: rect?.left || 0,
+        right: rect?.right || 0,
+        width: rect?.width || 0,
+        top: position === 'bottom' ? rect.bottom + 8 : undefined,
+        bottom:
+          position === 'top' ? window.innerHeight - (rect.top + 8) : undefined,
+      }}
     />
   );
 };
@@ -48,8 +110,13 @@ const Option = ({
 const Select = Compound as typeof Compound & {
   Value: typeof Value;
   Option: typeof Option;
+  Content: typeof Content;
   Trigger: typeof Overlay.Trigger;
-  Options: typeof Overlay.Content;
 };
+
+Select.Value = Value;
+Select.Option = Option;
+Select.Content = Content;
+Select.Trigger = Overlay.Trigger;
 
 export default Select;

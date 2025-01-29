@@ -4,34 +4,43 @@ import { useGSAP } from '@gsap/react';
 import useOverlay from './hook';
 import OverlayProvider from './Provider';
 import Button from '../components/button/Button';
+import { twMerge } from 'tailwind-merge';
 
-const Compound = ({
-  open,
-  children,
-  ...restProps
-}: Omit<
-  React.ComponentProps<'div'>,
-  keyof React.ComponentProps<typeof OverlayProvider>
-> &
-  React.ComponentProps<typeof OverlayProvider>) => {
-  return (
-    <div {...restProps}>
-      <OverlayProvider
-        open={open}
-        children={children}
-      />
-    </div>
-  );
-};
+const Compound = React.forwardRef(
+  (
+    {
+      open,
+      children,
+      ...restProps
+    }: Omit<
+      React.ComponentProps<'div'>,
+      keyof React.ComponentProps<typeof OverlayProvider>
+    > &
+      React.ComponentProps<typeof OverlayProvider>,
+    ref: React.ForwardedRef<React.ComponentRef<'div'>>
+  ) => {
+    return (
+      <div
+        ref={ref}
+        {...restProps}
+      >
+        <OverlayProvider
+          open={open}
+          children={children}
+        />
+      </div>
+    );
+  }
+);
 
 const Trigger = ({
   onClick,
   ...restProps
 }: React.ComponentProps<typeof Button>) => {
-  const { open } = useOverlay();
+  const { open, close, isOpen } = useOverlay();
 
   const handleClick = (ev: React.MouseEvent<HTMLButtonElement>) => {
-    open();
+    isOpen ? close() : open();
     onClick && onClick(ev);
   };
 
@@ -43,7 +52,7 @@ const Trigger = ({
   );
 };
 
-const Content = ({ ...restProps }: React.ComponentProps<'div'>) => {
+const Content = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
   const { isOpen } = useOverlay();
   const ref = React.useRef<HTMLDivElement>(null!);
 
@@ -59,6 +68,10 @@ const Content = ({ ...restProps }: React.ComponentProps<'div'>) => {
   return (
     <div
       ref={ref}
+      className={twMerge(
+        'fixed flex flex-col items-center justify-center',
+        className
+      )}
       {...restProps}
     />
   );
