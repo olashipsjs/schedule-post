@@ -126,7 +126,7 @@ const App = () => {
                                 <h6 className='px-3 font-semibold text-center'>
                                   Time
                                 </h6>
-                                <div className='h-1/5 w-3/5 grid grid-cols-4'>
+                                <div className='h-1/5 w-2/5 grid grid-cols-4 items-center'>
                                   <div>
                                     {hours.map((hour, index) => {
                                       return (
@@ -146,7 +146,7 @@ const App = () => {
                                     })}
                                   </div>
 
-                                  <span>:</span>
+                                  <p className='text-center'>:</p>
 
                                   <div>
                                     {minutes.map((minute, index) => {
