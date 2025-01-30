@@ -131,9 +131,20 @@ const App = () => {
                                     {(value) => {
                                       return (
                                         <div className='bg-gray-100 flex text-lg px-3 py-1 rounded-2xl gap-2 items-center justify-between'>
-                                          <b className='font-semibold'>
-                                            {value.hour}
-                                          </b>
+                                          <div>
+                                            {Array.from(
+                                              [
+                                                0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                                                10, 11, 12,
+                                              ].map((hour) => {
+                                                return (
+                                                  <b className='font-semibold'>
+                                                    {hour}
+                                                  </b>
+                                                );
+                                              })
+                                            )}
+                                          </div>
                                           <b className='font-semibold'>:</b>
                                           <b className='font-semibold'>
                                             {value.minute}
