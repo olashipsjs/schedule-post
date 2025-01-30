@@ -137,7 +137,7 @@ const App = () => {
                                         >
                                           <Select.Option
                                             value={hour}
-                                            className='w-full bg-transparent text-gray-600 px-3 py-1 hover:bg-gray-100 justify-start rounded-lg text-center'
+                                            className='w-full bg-transparent text-gray-600 px-3 py-1 hover:bg-gray-100 rounded-lg text-center'
                                           >
                                             {hour}
                                           </Select.Option>
@@ -155,7 +155,7 @@ const App = () => {
                                         >
                                           <Select.Option
                                             value={minute}
-                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg'
+                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-center rounded-lg'
                                           >
                                             {minute}
                                           </Select.Option>
