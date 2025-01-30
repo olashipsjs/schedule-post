@@ -123,7 +123,7 @@ const App = () => {
                                 </Select.Value>
                               </Select.Trigger>
                               <Select.Content className='bg-white grid rounded-2xl grid-cols-3 h-48 overflow-y-scroll p-2 items-start'>
-                                <div className='space-y-2 sticky top-0'>
+                                <div className='space-y-2'>
                                   <h6 className='px-3 text-sm font-semibold'>
                                     Hour
                                   </h6>
@@ -165,7 +165,7 @@ const App = () => {
                                     );
                                   })}
                                 </div>
-                                <div className='space-y-2 sticky top-0'>
+                                <div className='space-y-2'>
                                   <h6 className='px-3 text-sm font-semibold'>
                                     Meridian
                                   </h6>
