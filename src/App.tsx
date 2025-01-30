@@ -127,63 +127,7 @@ const App = () => {
                                   Time
                                 </h6>
                                 <div className='h-1/5 w-2/5 grid grid-cols-4 items-center'>
-                                  <div>
-                                    {hours.map((hour, index) => {
-                                      return (
-                                        <Field
-                                          key={index}
-                                          className='w-full'
-                                          name='start.hour'
-                                        >
-                                          <Select.Option
-                                            value={hour}
-                                            className='w-full bg-transparent text-gray-600 px-3 py-1 hover:bg-gray-100 rounded-lg text-center'
-                                          >
-                                            {hour}
-                                          </Select.Option>
-                                        </Field>
-                                      );
-                                    })}
-                                  </div>
-
-                                  <p className='text-center'>:</p>
-
-                                  <div>
-                                    {minutes.map((minute, index) => {
-                                      return (
-                                        <Field
-                                          key={index}
-                                          className='w-full'
-                                          name='start.minute'
-                                        >
-                                          <Select.Option
-                                            value={minute}
-                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-center rounded-lg'
-                                          >
-                                            {minute}
-                                          </Select.Option>
-                                        </Field>
-                                      );
-                                    })}
-                                  </div>
-                                  <div>
-                                    {meridians.map((meridian, index) => {
-                                      return (
-                                        <Field
-                                          key={index}
-                                          className='w-full'
-                                          name='start.meridian'
-                                        >
-                                          <Select.Option
-                                            value={meridian}
-                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg uppercase'
-                                          >
-                                            {meridian}
-                                          </Select.Option>
-                                        </Field>
-                                      );
-                                    })}
-                                  </div>
+                                  <div></div>
                                 </div>
                               </Select.Content>
                             </Select>
