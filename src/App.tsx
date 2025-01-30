@@ -126,11 +126,11 @@ const App = () => {
                                 <h6 className='px-3 font-semibold text-center'>
                                   Time
                                 </h6>
-                                <div className='h-40 w-2/5 items-center'>
+                                <div className='h-40 w-2/5 flex flex-col justify-center'>
                                   <Select.Value>
                                     {(value) => {
                                       return (
-                                        <div className='bg-gray-100 flex text-18 px-3 py-1 rounded-2xl gap-2 items-center justify-between'>
+                                        <div className='bg-gray-100 flex text-lg px-3 py-1 rounded-2xl gap-2 items-center justify-between'>
                                           <b className='font-semibold'>
                                             {value.hour}
                                           </b>
