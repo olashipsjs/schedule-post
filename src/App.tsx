@@ -143,17 +143,27 @@ const App = () => {
                                             })
                                           )}
                                         </div>
+                                        <b>:</b>
                                         <div>
                                           {Array.from(
-                                            [
-                                              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
-                                              12, 13, 14, 15, 16, 17, 18, 19,
-                                              20,
-                                            ].map((hour) => {
+                                            [1, 2, 3, 4, 5].map((minute) => {
                                               return (
                                                 <p>
                                                   <b className='font-semibold'>
-                                                    {hour}
+                                                    {minute}
+                                                  </b>
+                                                </p>
+                                              );
+                                            })
+                                          )}
+                                        </div>
+                                        <div>
+                                          {Array.from(
+                                            ['am', 'pm'].map((meridian) => {
+                                              return (
+                                                <p>
+                                                  <b className='font-semibold'>
+                                                    {meridian}
                                                   </b>
                                                 </p>
                                               );
