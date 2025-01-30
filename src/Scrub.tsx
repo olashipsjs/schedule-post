@@ -73,10 +73,11 @@ const Scrub: React.FC<ScrubProps> = ({ min, max, step = 1, onChange }) => {
     >
       <div
         ref={scrubberRef}
-        className='absolute left-0 w-full h-8 bg-blue-500 rounded-full cursor-pointer'
+        className='absolute left-0 w-full h-8 bg-blue-500 rounded-full cursor-pointer flex items-center justify-center text-white'
         style={{ top: `${((value - min) / (max - min)) * 100}%` }}
-      />
-      <div className='absolute top-0 left-full ml-4 text-sm'>{value}</div>
+      >
+        {value}
+      </div>
     </div>
   );
 };
