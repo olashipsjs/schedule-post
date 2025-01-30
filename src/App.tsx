@@ -123,31 +123,30 @@ const App = () => {
                                 </Select.Value>
                               </Select.Trigger>
                               <Select.Content className='bg-white grid rounded-2xl grid-cols-3 h-48 overflow-y-scroll p-2 items-start'>
-                                <div className='space-y-2'>
-                                  <h6 className='px-3 text-sm font-semibold'>
-                                    Hour
-                                  </h6>
-                                  {hours.map((hour, index) => {
-                                    return (
-                                      <Field
-                                        key={index}
-                                        className='w-full'
-                                        name='start.hour'
-                                      >
-                                        <Select.Option
-                                          value={hour}
-                                          className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg'
+                                <h6 className='px-3 text-sm font-semibold'>
+                                  Time
+                                </h6>
+                                <div>
+                                  <div>
+                                    {hours.map((hour, index) => {
+                                      return (
+                                        <Field
+                                          key={index}
+                                          className='w-full'
+                                          name='start.hour'
                                         >
-                                          {hour}
-                                        </Select.Option>
-                                      </Field>
-                                    );
-                                  })}
+                                          <Select.Option
+                                            value={hour}
+                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg'
+                                          >
+                                            {hour}
+                                          </Select.Option>
+                                        </Field>
+                                      );
+                                    })}
+                                  </div>
                                 </div>
-                                <div className='space-y-2'>
-                                  <h6 className='px-3 text-sm font-semibold'>
-                                    Minute
-                                  </h6>
+                                <div>
                                   {minutes.map((minute, index) => {
                                     return (
                                       <Field
@@ -165,10 +164,7 @@ const App = () => {
                                     );
                                   })}
                                 </div>
-                                <div className='space-y-2'>
-                                  <h6 className='px-3 text-sm font-semibold'>
-                                    Meridian
-                                  </h6>
+                                <div>
                                   {meridians.map((meridian, index) => {
                                     return (
                                       <Field
