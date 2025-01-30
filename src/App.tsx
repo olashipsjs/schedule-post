@@ -126,8 +126,18 @@ const App = () => {
                                 <h6 className='px-3 font-semibold text-center'>
                                   Time
                                 </h6>
-                                <div className='h-1/5 w-2/5 grid grid-cols-4 items-center'>
-                                  <div></div>
+                                <div className='h-40 w-2/5 items-center'>
+                                  <Select.Value>
+                                    {(value) => {
+                                      return (
+                                        <div className='bg-gray-100 grid grid-cols-4 px-3 py-1 rounded-2xl'>
+                                          <b className='font-semibold'>
+                                            {value.hour}
+                                          </b>
+                                        </div>
+                                      );
+                                    }}
+                                  </Select.Value>
                                 </div>
                               </Select.Content>
                             </Select>
