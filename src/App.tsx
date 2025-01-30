@@ -134,6 +134,7 @@ const App = () => {
                                           <b className='font-semibold'>
                                             {value.hour}
                                           </b>
+                                          <b className='font-semibold'>:</b>
                                           <b className='font-semibold'>
                                             {value.minute}
                                           </b>
