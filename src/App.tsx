@@ -126,37 +126,44 @@ const App = () => {
                                 <h6 className='px-3 font-semibold text-center'>
                                   Time
                                 </h6>
-                                <div className='h-40 w-2/5 flex flex-col justify-center'>
-                                  <Select.Value>
-                                    {(value) => {
-                                      return (
-                                        <div className='bg-gray-100 flex text-lg px-3 py-1 rounded-2xl gap-2 items-center justify-between'>
-                                          <div>
-                                            {Array.from(
-                                              [
-                                                0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
-                                                10, 11, 12,
-                                              ].map((hour) => {
-                                                return (
+                                <Select.Value className='h-40 flex items-center gap-3'>
+                                  {(value) => {
+                                    return (
+                                      <React.Fragment>
+                                        <div>
+                                          {Array.from(
+                                            [8, 9, 10, 11, 12].map((hour) => {
+                                              return (
+                                                <p>
                                                   <b className='font-semibold'>
                                                     {hour}
                                                   </b>
-                                                );
-                                              })
-                                            )}
-                                          </div>
-                                          <b className='font-semibold'>:</b>
-                                          <b className='font-semibold'>
-                                            {value.minute}
-                                          </b>
-                                          <b className='font-semibold'>
-                                            {value.meridian}
-                                          </b>
+                                                </p>
+                                              );
+                                            })
+                                          )}
                                         </div>
-                                      );
-                                    }}
-                                  </Select.Value>
-                                </div>
+                                        <div>
+                                          {Array.from(
+                                            [
+                                              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                                              12, 13, 14, 15, 16, 17, 18, 19,
+                                              20,
+                                            ].map((hour) => {
+                                              return (
+                                                <p>
+                                                  <b className='font-semibold'>
+                                                    {hour}
+                                                  </b>
+                                                </p>
+                                              );
+                                            })
+                                          )}
+                                        </div>
+                                      </React.Fragment>
+                                    );
+                                  }}
+                                </Select.Value>
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
