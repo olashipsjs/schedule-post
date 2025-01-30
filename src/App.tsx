@@ -122,66 +122,64 @@ const App = () => {
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl h-48 overflow-y-scroll p-2 flex-col flex'>
-                                <div className='space-y-2 w-full'>
-                                  <h6 className='px-3 text-sm font-semibold text-center'>
-                                    Time
-                                  </h6>
+                              <Select.Content className='bg-white rounded-2xl h-64 overflow-y-scroll p-4 flex-col flex justify-start gap-y-4'>
+                                <h6 className='px-3 font-semibold text-center'>
+                                  Time
+                                </h6>
+                                <div className='h-1/5 w-3/5 grid grid-cols-3'>
                                   <div>
-                                    <div>
-                                      {hours.map((hour, index) => {
-                                        return (
-                                          <Field
-                                            key={index}
-                                            className='w-full'
-                                            name='start.hour'
+                                    {hours.map((hour, index) => {
+                                      return (
+                                        <Field
+                                          key={index}
+                                          className='w-full'
+                                          name='start.hour'
+                                        >
+                                          <Select.Option
+                                            value={hour}
+                                            className='w-full bg-transparent text-gray-600 px-3 py--1 hover:bg-gray-100 justify-start rounded-lg text-center'
                                           >
-                                            <Select.Option
-                                              value={hour}
-                                              className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg'
-                                            >
-                                              {hour}
-                                            </Select.Option>
-                                          </Field>
-                                        );
-                                      })}
-                                    </div>
-                                    <div>
-                                      {minutes.map((minute, index) => {
-                                        return (
-                                          <Field
-                                            key={index}
-                                            className='w-full'
-                                            name='start.minute'
+                                            {hour}
+                                          </Select.Option>
+                                        </Field>
+                                      );
+                                    })}
+                                  </div>
+                                  <div>
+                                    {minutes.map((minute, index) => {
+                                      return (
+                                        <Field
+                                          key={index}
+                                          className='w-full'
+                                          name='start.minute'
+                                        >
+                                          <Select.Option
+                                            value={minute}
+                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg'
                                           >
-                                            <Select.Option
-                                              value={minute}
-                                              className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg'
-                                            >
-                                              {minute}
-                                            </Select.Option>
-                                          </Field>
-                                        );
-                                      })}
-                                    </div>
-                                    <div>
-                                      {meridians.map((meridian, index) => {
-                                        return (
-                                          <Field
-                                            key={index}
-                                            className='w-full'
-                                            name='start.meridian'
+                                            {minute}
+                                          </Select.Option>
+                                        </Field>
+                                      );
+                                    })}
+                                  </div>
+                                  <div>
+                                    {meridians.map((meridian, index) => {
+                                      return (
+                                        <Field
+                                          key={index}
+                                          className='w-full'
+                                          name='start.meridian'
+                                        >
+                                          <Select.Option
+                                            value={meridian}
+                                            className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg uppercase'
                                           >
-                                            <Select.Option
-                                              value={meridian}
-                                              className='w-full bg-transparent text-gray-600 px-4 py-1 hover:bg-gray-100 text-left justify-start rounded-lg uppercase'
-                                            >
-                                              {meridian}
-                                            </Select.Option>
-                                          </Field>
-                                        );
-                                      })}
-                                    </div>
+                                            {meridian}
+                                          </Select.Option>
+                                        </Field>
+                                      );
+                                    })}
                                   </div>
                                 </div>
                               </Select.Content>
