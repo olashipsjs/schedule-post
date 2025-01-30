@@ -130,9 +130,15 @@ const App = () => {
                                   <Select.Value>
                                     {(value) => {
                                       return (
-                                        <div className='bg-gray-100 grid grid-cols-4 px-3 py-1 rounded-2xl'>
+                                        <div className='bg-gray-100 flex text-18 px-3 py-1 rounded-2xl gap-2 items-center justify-between'>
                                           <b className='font-semibold'>
                                             {value.hour}
+                                          </b>
+                                          <b className='font-semibold'>
+                                            {value.minute}
+                                          </b>
+                                          <b className='font-semibold'>
+                                            {value.meridian}
                                           </b>
                                         </div>
                                       );
