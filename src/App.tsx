@@ -9,17 +9,10 @@ import DismissIcon from './components/icons/DismissIcon';
 import CalenderIcon from './components/icons/CalenderIcon';
 import { useGSAP } from '@gsap/react';
 import Select from './components/select/Select';
-
-const hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const minutes = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-  22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-  41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
-];
-const meridians = ['am', 'pm'];
-
+import Scrub from './Scrub';
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
+  const [selectedTime, setSelectedTime] = React.useState(0);
 
   useGSAP(() => {
     gsap.to('#post-box', {
@@ -126,54 +119,22 @@ const App = () => {
                                 <h6 className='px-3 font-semibold text-center'>
                                   Time
                                 </h6>
-                                <Select.Value className='h-40 flex items-center gap-3'>
+                                <Select.Value className='flex items-center gap-3'>
                                   {(value) => {
                                     return (
-                                      <React.Fragment>
-                                        <div>
-                                          {Array.from(
-                                            [8, 9, 10, 11, 12].map((hour) => {
-                                              return (
-                                                <p>
-                                                  <b className='font-semibold'>
-                                                    {hour}
-                                                  </b>
-                                                </p>
-                                              );
-                                            })
-                                          )}
-                                        </div>
-                                        <b>:</b>
-                                        <div>
-                                          {Array.from(
-                                            [1, 2, 3, 4, 5].map((minute) => {
-                                              return (
-                                                <p>
-                                                  <b className='font-semibold'>
-                                                    {minute}
-                                                  </b>
-                                                </p>
-                                              );
-                                            })
-                                          )}
-                                        </div>
-                                        <div>
-                                          {Array.from(
-                                            ['am', 'pm'].map((meridian) => {
-                                              return (
-                                                <p>
-                                                  <b className='font-semibold'>
-                                                    {meridian}
-                                                  </b>
-                                                </p>
-                                              );
-                                            })
-                                          )}
-                                        </div>
-                                      </React.Fragment>
+                                      <Scrub
+                                        min={0}
+                                        max={24}
+                                        onChange={(value) =>
+                                          setSelectedTime(value)
+                                        }
+                                      />
                                     );
                                   }}
                                 </Select.Value>
+                                <p className='mt-4 text-lg'>
+                                  Selected Time: {selectedTime}:00
+                                </p>
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
