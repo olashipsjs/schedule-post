@@ -119,17 +119,9 @@ const App = () => {
                                 <h6 className='px-3 font-semibold text-center'>
                                   Time
                                 </h6>
-                                <Select.Value className='flex items-center gap-3'>
+                                <Select.Value className='h-40 flex items-center gap-3'>
                                   {(value) => {
-                                    return (
-                                      <Scrub
-                                        min={0}
-                                        max={24}
-                                        onChange={(value) =>
-                                          setSelectedTime(value)
-                                        }
-                                      />
-                                    );
+                                    return <Scrub />;
                                   }}
                                 </Select.Value>
                                 <p className='mt-4 text-lg'>

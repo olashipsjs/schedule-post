@@ -1,85 +1,157 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
-type ScrubProps = {
-  min: number; // Minimum time (e.g., 0)
-  max: number; // Maximum time (e.g., 24)
-  step?: number; // Time interval (e.g., 1 hour)
-  onChange?: (value: number) => void; // Callback for time change
-};
+const TimePicker: React.FC = () => {
+  const [selectedHour, setSelectedHour] = useState(9);
+  const [selectedMinute, setSelectedMinute] = useState(0);
+  const [meridian, setMeridian] = useState<'AM' | 'PM'>('AM');
 
-const Scrub: React.FC<ScrubProps> = ({ min, max, step = 1, onChange }) => {
-  const scrubberRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [value, setValue] = useState(min);
+  const hoursRef = useRef<HTMLDivElement>(null);
+  const minutesRef = useRef<HTMLDivElement>(null);
+  const meridianRef = useRef<HTMLDivElement>(null);
 
-  const handleDrag = (yPosition: number) => {
-    if (!trackRef.current) return;
+  const hours = Array.from({ length: 12 }, (_, i) => i + 1); // 1 to 12
+  const minutes = Array.from({ length: 60 }, (_, i) => i); // 0 to 59
+  const meridians = ['AM', 'PM'];
+  const presets = [9, 12, 16, 18]; // Example presets: 9AM, 12PM, 4PM, 6PM
 
-    const trackBounds = trackRef.current.getBoundingClientRect();
-    const trackHeight = trackBounds.height;
-    const newY = Math.max(
-      0,
-      Math.min(yPosition - trackBounds.top, trackHeight)
-    );
+  // Function to handle GSAP snapping
+  const scrollToSelection = (
+    containerRef: React.RefObject<HTMLDivElement>,
+    selectedIndex: number
+  ) => {
+    if (containerRef.current) {
+      const items = containerRef.current.children;
+      const target = items[selectedIndex] as HTMLElement;
 
-    // Calculate the corresponding value
-    const percentage = newY / trackHeight;
-    const newValue = Math.round(min + (percentage * (max - min)) / step) * step;
-    setValue(newValue);
+      if (target) {
+        const yOffset = target.offsetTop - containerRef.current.offsetTop;
 
-    if (onChange) onChange(newValue);
-
-    // Move scrubber
-    if (scrubberRef.current) {
-      gsap.to(scrubberRef.current, {
-        y: newY,
-        duration: 0.2,
-      });
+        // Smooth animation with GSAP
+        gsap.to(containerRef.current, {
+          scrollTop: yOffset,
+          duration: 0.4,
+          ease: 'power2.out',
+        });
+      }
     }
   };
 
+  // Scroll to the selected values when they change
   useEffect(() => {
-    const handleMouseDown = (event: MouseEvent) => {
-      handleDrag(event.clientY);
-      const handleMouseMove = (moveEvent: MouseEvent) => {
-        handleDrag(moveEvent.clientY);
-      };
+    const hourIndex = selectedHour - 1; // Convert 1-12 to 0-based index
+    const minuteIndex = selectedMinute;
+    const meridianIndex = meridian === 'AM' ? 0 : 1;
 
-      const handleMouseUp = () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
+    scrollToSelection(hoursRef, hourIndex);
+    scrollToSelection(minutesRef, minuteIndex);
+    scrollToSelection(meridianRef, meridianIndex);
+  }, [selectedHour, selectedMinute, meridian]);
 
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-    };
-
-    if (trackRef.current) {
-      trackRef.current.addEventListener('mousedown', handleMouseDown);
-    }
-
-    return () => {
-      if (trackRef.current) {
-        trackRef.current.removeEventListener('mousedown', handleMouseDown);
-      }
-    };
-  }, [min, max, step]);
+  const handlePresetClick = (hour: number) => {
+    setSelectedHour(hour > 12 ? hour - 12 : hour);
+    setMeridian(hour >= 12 ? 'PM' : 'AM');
+    setSelectedMinute(0);
+  };
 
   return (
-    <div
-      className='relative w-16 h-96 bg-gray-200 rounded-md'
-      ref={trackRef}
-    >
-      <div
-        ref={scrubberRef}
-        className='absolute left-0 w-full h-8 bg-blue-500 rounded-full cursor-pointer flex items-center justify-center text-white'
-        style={{ top: `${((value - min) / (max - min)) * 100}%` }}
-      >
-        {value}
+    <div className='flex flex-col items-center justify-center w-full h-screen bg-gray-50'>
+      <h1 className='mb-6 text-lg font-semibold text-gray-800'>Time</h1>
+
+      {/* Time Selector */}
+      <div className='flex items-center justify-center space-x-4'>
+        {/* Hours */}
+        <div
+          className='relative w-12 h-40 overflow-hidden rounded-md bg-gray-200'
+          ref={hoursRef}
+        >
+          <div className='flex flex-col items-center space-y-2'>
+            {hours.map((hour) => (
+              <div
+                key={hour}
+                className={`text-lg cursor-pointer ${
+                  hour === selectedHour
+                    ? 'font-bold text-black'
+                    : 'text-gray-400'
+                }`}
+                onClick={() => setSelectedHour(hour)}
+              >
+                {hour}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Colon */}
+        <span className='text-lg font-bold'>:</span>
+
+        {/* Minutes */}
+        <div
+          className='relative w-12 h-40 overflow-hidden rounded-md bg-gray-200'
+          ref={minutesRef}
+        >
+          <div className='flex flex-col items-center space-y-2'>
+            {minutes.map((minute) => (
+              <div
+                key={minute}
+                className={`text-lg cursor-pointer ${
+                  minute === selectedMinute
+                    ? 'font-bold text-black'
+                    : 'text-gray-400'
+                }`}
+                onClick={() => setSelectedMinute(minute)}
+              >
+                {minute.toString().padStart(2, '0')}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* AM/PM */}
+        <div
+          className='relative w-12 h-40 overflow-hidden rounded-md bg-gray-200'
+          ref={meridianRef}
+        >
+          <div className='flex flex-col items-center space-y-2'>
+            {meridians.map((m) => (
+              <div
+                key={m}
+                className={`text-lg cursor-pointer ${
+                  m === meridian ? 'font-bold text-black' : 'text-gray-400'
+                }`}
+                onClick={() => setMeridian(m as 'AM' | 'PM')}
+              >
+                {m}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
+      {/* Presets */}
+      <div className='flex items-center justify-center mt-6 space-x-4'>
+        {presets.map((preset) => (
+          <button
+            key={preset}
+            className={`px-4 py-2 text-sm font-medium rounded-md ${
+              selectedHour === (preset > 12 ? preset - 12 : preset) &&
+              meridian === (preset >= 12 ? 'PM' : 'AM')
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-700'
+            }`}
+            onClick={() => handlePresetClick(preset)}
+          >
+            {preset > 12 ? preset - 12 : preset} {preset >= 12 ? 'PM' : 'AM'}
+          </button>
+        ))}
+      </div>
+
+      {/* Done Button */}
+      <button className='px-6 py-3 mt-6 font-medium text-white bg-blue-500 rounded-lg'>
+        Done
+      </button>
     </div>
   );
 };
 
-export default Scrub;
+export default TimePicker;
