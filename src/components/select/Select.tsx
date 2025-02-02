@@ -93,7 +93,10 @@ const Content = ({
   return (
     <Overlay.Content
       {...restProps}
-      className={twMerge('ring-1 ring-gray-200 shadow-sm', className)}
+      className={twMerge(
+        'ring-1 ring-gray-200 shadow-lg shadow-gray-200',
+        className
+      )}
       style={{
         zIndex: 999,
         left: rect?.left || 0,
