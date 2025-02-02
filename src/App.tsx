@@ -114,8 +114,10 @@ const App = () => {
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl h-64 overflow-y-scroll items-start p-2 grid grid-cols-3 gap-y-4'>
-                                <Scrub />
+                              <Select.Content className='bg-white rounded-2xl h-64 overflow-y-scroll items-start p-2'>
+                                <div className='relative grid grid-cols-3 w-full'>
+                                  <Scrub />
+                                </div>
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
