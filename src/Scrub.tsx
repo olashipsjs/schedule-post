@@ -27,7 +27,7 @@ const Scrub = () => {
             </div>
           );
         })}
-        <Button className='p-1 text-gray-500 bg-transparent hover:text-gray-900 absolute top-56'>
+        <Button className='p-1 text-gray-500 bg-transparent hover:text-gray-900 fixed top-56'>
           <ChevronDown
             width={24}
             height={24}
