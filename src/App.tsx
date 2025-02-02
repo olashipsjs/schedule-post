@@ -114,13 +114,8 @@ const App = () => {
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl h-64 overflow-y-clip p-4 flex-col flex justify-start gap-y-4'>
-                                <h6 className='px-3 font-semibold text-center'>
-                                  Time
-                                </h6>
-                                <Select.Value className='h-40 flex items-center gap-3'>
-                                  <Scrub />
-                                </Select.Value>
+                              <Select.Content className='bg-white rounded-2xl h-64 overflow-y-clip p-2 grid grid-cols-3 justify-start gap-y-4'>
+                                <Scrub />
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
