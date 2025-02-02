@@ -12,7 +12,6 @@ import Select from './components/select/Select';
 import Scrub from './Scrub';
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
-  const [selectedTime, setSelectedTime] = React.useState(0);
 
   useGSAP(() => {
     gsap.to('#post-box', {
@@ -120,13 +119,8 @@ const App = () => {
                                   Time
                                 </h6>
                                 <Select.Value className='h-40 flex items-center gap-3'>
-                                  {(value) => {
-                                    return <Scrub />;
-                                  }}
+                                  <Scrub />
                                 </Select.Value>
-                                <p className='mt-4 text-lg'>
-                                  Selected Time: {selectedTime}:00
-                                </p>
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
