@@ -6,16 +6,20 @@ const minutes = Array.from({ length: 60 }, (_, i) => i);
 const Scrub = () => {
   return (
     <React.Fragment>
-      <div>
+      <div className='w-full text-center'>
         {hours.map((hour) => {
           return (
-            <div
-              key={hour}
-              className='flex items-center justify-between'
-            >
+            <div key={hour}>
               <span>{hour}</span>
-              <span>:</span>
-              <span>00</span>
+            </div>
+          );
+        })}
+      </div>
+      <div className='w-full text-center'>
+        {minutes.map((minute) => {
+          return (
+            <div key={minute}>
+              <span>{minute}</span>
             </div>
           );
         })}
