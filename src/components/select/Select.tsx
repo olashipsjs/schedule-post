@@ -101,7 +101,7 @@ const Content = ({
     }
   }, [isOpen, rect]);
 
-  if (!rect) return;
+  if (!rect) return null;
 
   return (
     <Overlay.Content
