@@ -66,7 +66,7 @@ const App = () => {
                 meridian: 'am',
               },
               endTime: {
-                hour: date.setHours(date.getHours() + 2),
+                hour: date.getHours(),
                 minute: date.getMinutes(),
                 meridian: 'am',
               },
@@ -105,7 +105,7 @@ const App = () => {
                       className='flex gap-2 justify-center items-center flex-col-reverse'
                     >
                       <Button className='scaleX'>Schedule</Button>
-                      <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX flex'>
+                      <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX flex gap-1'>
                         <Field
                           name='startTime'
                           className='w-full'
@@ -147,7 +147,7 @@ const App = () => {
                                 </Select.Value>
                               </Select.Trigger>
                               <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
-                                <TimePicker fieldName='startTime' />
+                                <TimePicker fieldName='endTime' />
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
