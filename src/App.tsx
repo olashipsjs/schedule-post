@@ -83,13 +83,13 @@ const App = () => {
                 <div className='p-2 min-h-28 flex flex-col justify-end'>
                   <div
                     id={'post-box'}
-                    className='flex gap-2 justify-end items-stretch'
+                    className='flex gap-2 justify-end'
                   >
                     <Button
                       onClick={() => handleSchedule()}
-                      className={'bg-gray-200 text-gray-900 p-2'}
+                      className={'bg-gray-200 text-gray-900'}
                     >
-                      <CalenderIcon />
+                      Schedule
                     </Button>
                     <Button id='post-btn'>Post</Button>
                   </div>

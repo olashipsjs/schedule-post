@@ -66,7 +66,7 @@ const Content = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
     });
   }, [isOpen]);
 
-  if (!isOpen) return;
+  if (!isOpen) return null;
 
   return createPortal(
     <div
