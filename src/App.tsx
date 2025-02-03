@@ -9,7 +9,8 @@ import DismissIcon from './components/icons/DismissIcon';
 import CalenderIcon from './components/icons/CalenderIcon';
 import { useGSAP } from '@gsap/react';
 import Select from './components/select/Select';
-import Scrub from './Scrub';
+import Scrub from './TimePicker';
+import TimePicker from './TimePicker';
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
 
@@ -51,6 +52,8 @@ const App = () => {
     setIsHidden((prev) => !prev);
   };
 
+  const date = new Date();
+
   return (
     <main className='flex flex-col items-center justify-end bg-gray-50 min-h-screen'>
       <section className='w-full'>
@@ -58,7 +61,12 @@ const App = () => {
           <Formik
             initialValues={{
               message: '',
-              start: {
+              startTime: {
+                hour: date.getHours(),
+                minute: date.getMinutes(),
+                meridian: 'AM',
+              },
+              endTime: {
                 hour: 9,
                 minute: 45,
                 meridian: 'am',
@@ -100,7 +108,7 @@ const App = () => {
                       <Button className='scaleX'>Schedule</Button>
                       <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX flex'>
                         <Field
-                          name='start'
+                          name='startTime'
                           className='w-full'
                         >
                           <Field.Sheet className='rounded-full w-full'>
@@ -117,7 +125,7 @@ const App = () => {
                                 </Select.Value>
                               </Select.Trigger>
                               <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
-                                <Scrub />
+                                <TimePicker fieldName='startTime' />
                               </Select.Content>
                             </Select>
                           </Field.Sheet>

@@ -7,13 +7,13 @@ const hours = Array.from({ length: 12 }, (_, i) => i + 1);
 const minutes = Array.from({ length: 60 }, (_, i) => i);
 const meridians = ['am', 'pm'];
 
-const Scrub = () => {
+const TimePicker = ({ fieldName }: { fieldName: string }) => {
   return (
     <React.Fragment>
       <div className='space-y-1 w-full p-2'>
         {hours.map((hour) => {
           return (
-            <Field name='start.hour'>
+            <Field name={`${fieldName}.hour`}>
               {({ field, helper }) => {
                 const currentHour = field.value === hour;
 
@@ -37,7 +37,7 @@ const Scrub = () => {
       <div className='w-full p-2 space-y-1'>
         {minutes.map((minute) => {
           return (
-            <Field name='start.minute'>
+            <Field name={`${fieldName}.minute`}>
               {({ field, helper }) => {
                 const currentMinute = field.value === minute;
 
@@ -61,7 +61,7 @@ const Scrub = () => {
       <div className='w-full p-2 space-y-1'>
         {meridians.map((meridian) => {
           return (
-            <Field name='start.meridian'>
+            <Field name={`${fieldName}.meridian`}>
               {({ field, helper }) => {
                 const currentMeridian = field.value === meridian;
 
@@ -86,4 +86,4 @@ const Scrub = () => {
   );
 };
 
-export default Scrub;
+export default TimePicker;
