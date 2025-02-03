@@ -58,15 +58,27 @@ const Scrub = () => {
           );
         })}
       </div>
-      <div className='w-full text-center text-2xl leading-0 font-medium text-gray-500 uppercase p-2'>
+      <div className='w-full text-center text-2xl leading-0 font-medium text-gray-500 uppercase p-2 space-y-1'>
         {meridians.map((meridian) => {
           return (
-            <div
-              className='h-10 flex justify-center items-center'
-              key={meridian}
-            >
-              <span>{meridian}</span>
-            </div>
+            <Field name='start.minute'>
+              {({ field, helper }) => {
+                const currentMeridian = field.value === meridian;
+
+                return (
+                  <Button
+                    key={meridian}
+                    onClick={() => helper.setValue(meridian)}
+                    className={twMerge(
+                      'p-0 w-full size-8 rounded-lg bg-transparent uppercase text-gray-500 hover:bg-gray-200 text-base',
+                      currentMeridian && 'text-gray-900 bg-gray-200'
+                    )}
+                  >
+                    {meridian}
+                  </Button>
+                );
+              }}
+            </Field>
           );
         })}
       </div>
