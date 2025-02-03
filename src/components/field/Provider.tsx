@@ -16,15 +16,21 @@ export const FieldContext = React.createContext<Context<unknown> | undefined>(
   undefined
 );
 
-const FieldProvider = ({
-  name,
-  children,
-}: React.PropsWithChildren & { name: string }) => {
+type Props = {
+  name: string;
+  children?: ((content: Context<any>) => React.ReactNode) | React.ReactNode;
+};
+
+const FieldProvider = ({ name, children }: Props) => {
   const [field, meta, helper] = useField(name);
 
+  const value = React.useMemo(() => {
+    return { field, meta, helper };
+  }, [field.value]);
+
   return (
-    <FieldContext.Provider value={{ field, meta, helper }}>
-      {children}
+    <FieldContext.Provider value={value}>
+      {typeof children === 'function' ? children(value) : children}
     </FieldContext.Provider>
   );
 };

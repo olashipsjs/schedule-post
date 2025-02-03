@@ -1,17 +1,23 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import FieldProvider from './Provider';
-// import useField from './hook';
 
 const Compound = ({
   name = '',
+  children,
   ...restProps
-}: React.ComponentProps<'div'> &
+}: Omit<
+  React.ComponentProps<'div'>,
+  keyof React.ComponentProps<typeof FieldProvider>
+> &
   React.ComponentProps<typeof FieldProvider>) => {
   return (
-    <FieldProvider name={name}>
-      <div {...restProps} />
-    </FieldProvider>
+    <div {...restProps}>
+      <FieldProvider
+        name={name}
+        children={children}
+      />
+    </div>
   );
 };
 

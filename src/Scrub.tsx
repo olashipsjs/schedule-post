@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './components/button/Button';
-import { ChevronUp } from './components/icons/ChevronUp';
-import { ChevronDown } from './components/icons/ChevronDown';
+import useField from './components/field/hook';
+import Field from './components/field/Field';
 
 const hours = Array.from({ length: 12 }, (_, i) => i + 1);
 const minutes = Array.from({ length: 60 }, (_, i) => i + 1);
@@ -10,29 +10,24 @@ const meridians = ['am', 'pm'];
 const Scrub = () => {
   return (
     <React.Fragment>
-      <div className='relative w-full text-center text-2xl leading-0 font-medium text-gray-500 p-2 flex flex-col items-center py-10'>
-        <Button className='p-1 text-gray-500 bg-transparent hover:text-gray-900 absolute top-1'>
-          <ChevronUp
-            width={24}
-            height={24}
-          />
-        </Button>
+      <div className='relative w-full text-center text-2xl leading-0 font-medium text-gray-500 p-2'>
         {hours.map((hour) => {
           return (
-            <div
-              className='h-10 flex justify-center items-center'
-              key={hour}
-            >
-              <span>{hour}</span>
-            </div>
+            <Field name='start.hour'>
+              {({ helper }) => {
+                return (
+                  <Button
+                    key={hour}
+                    onClick={() => helper.setValue(hour)}
+                    className='p-0 w-full size-8 rounded-lg bg-transparent text-gray-600 hover:bg-gray-200'
+                  >
+                    {hour}
+                  </Button>
+                );
+              }}
+            </Field>
           );
         })}
-        <Button className='p-1 text-gray-500 bg-transparent hover:text-gray-900 fixed top-56'>
-          <ChevronDown
-            width={24}
-            height={24}
-          />
-        </Button>
       </div>
       <div className='w-full text-center text-2xl leading-0 font-medium text-gray-500 p-2'>
         {minutes.map((minute) => {
