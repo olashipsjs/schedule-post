@@ -89,6 +89,8 @@ const Content = ({
     });
   }, [isOpen]);
 
+  if (!rect) return;
+
   React.useEffect(() => {
     if (isOpen && rect) {
       const viewportHeight = window.innerHeight;
@@ -100,8 +102,6 @@ const Content = ({
       }
     }
   }, [isOpen, rect]);
-
-  if (!rect) return;
 
   return (
     <Overlay.Content
