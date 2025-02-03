@@ -101,6 +101,8 @@ const Content = ({
     }
   }, [isOpen, rect]);
 
+  if (!rect) return;
+
   return (
     <Overlay.Content
       {...restProps}
@@ -114,11 +116,9 @@ const Content = ({
         left: rect?.left || 0,
         right: rect?.right || 0,
         width: rect?.width || 0,
-        top: position === 'bottom' ? rect?.bottom || 0 + 8 : undefined,
+        top: position === 'bottom' ? rect.bottom + 8 : undefined,
         bottom:
-          position === 'top'
-            ? window.innerHeight - (rect?.top || 0 + 8)
-            : undefined,
+          position === 'top' ? window.innerHeight - (rect.top + 8) : undefined,
       }}
     />
   );

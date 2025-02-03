@@ -116,7 +116,7 @@ const App = () => {
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 w-full items-start h-64 overflow-y-scroll no-scrollbar'>
+                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
                                 <Scrub />
                               </Select.Content>
                             </Select>
