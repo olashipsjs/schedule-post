@@ -5,6 +5,7 @@ import useOverlay from './hook';
 import OverlayProvider from './Provider';
 import Button from '../components/button/Button';
 import { twMerge } from 'tailwind-merge';
+import { createPortal } from 'react-dom';
 
 const Compound = React.forwardRef(
   (
@@ -65,7 +66,7 @@ const Content = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
     });
   }, [isOpen]);
 
-  return (
+  return createPortal(
     <div
       ref={ref}
       className={twMerge(
@@ -73,7 +74,8 @@ const Content = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
         className
       )}
       {...restProps}
-    />
+    />,
+    document.querySelector('#overlay')!
   );
 };
 

@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import Textarea from './components/textarea/Textarea';
 import Field from './components/field/Field';
-import { twMerge } from 'tailwind-merge';
 import Button from './components/button/Button';
 import React from 'react';
 import gsap from 'gsap';
