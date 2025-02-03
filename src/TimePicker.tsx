@@ -23,7 +23,8 @@ const TimePicker = ({ fieldName }: { fieldName: string }) => {
                     onClick={() => helper.setValue(hour)}
                     className={twMerge(
                       'p-0 w-full size-8 rounded-lg bg-transparent text-gray-500 hover:bg-gray-200 text-lg',
-                      currentHour && 'text-gray-900 bg-gray-200'
+                      currentHour &&
+                        'text-gray-900 bg-gray-100 ring-1 ring-gray-200'
                     )}
                   >
                     {hour}
@@ -46,8 +47,9 @@ const TimePicker = ({ fieldName }: { fieldName: string }) => {
                     key={minute}
                     onClick={() => helper.setValue(minute)}
                     className={twMerge(
-                      'p-0 w-full size-8 rounded-lg bg-transparent text-gray-500 hover:bg-gray-200 text-lg',
-                      currentMinute && 'text-gray-900 bg-gray-200'
+                      'p-0 w-full size-8 rounded-lg bg-transparent text-gray-500 hover:bg-gray-200 text-base',
+                      currentMinute &&
+                        'text-gray-900 bg-gray-100 ring-1 ring-gray-200'
                     )}
                   >
                     {minute < 10 ? `0${minute}` : minute}
@@ -71,7 +73,8 @@ const TimePicker = ({ fieldName }: { fieldName: string }) => {
                     onClick={() => helper.setValue(meridian)}
                     className={twMerge(
                       'p-0 w-full size-8 rounded-lg bg-transparent uppercase text-gray-500 hover:bg-gray-200 text-base',
-                      currentMeridian && 'text-gray-900 bg-gray-200'
+                      currentMeridian &&
+                        'text-gray-900 bg-gray-100 ring-1 ring-gray-200'
                     )}
                   >
                     {meridian}

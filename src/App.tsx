@@ -54,7 +54,7 @@ const App = () => {
   const date = new Date();
 
   return (
-    <main className='flex flex-col items-center justify-end bg-gray-50 min-h-screen'>
+    <main className='flex flex-col items-center justify-center bg-gray-50 min-h-screen'>
       <section className='w-full'>
         <div className='max-w-[400px] mx-auto p-3 w-full'>
           <Formik
@@ -73,95 +73,89 @@ const App = () => {
             }}
             onSubmit={() => null!}
           >
-            <Form>
-              <Field
-                name='message'
-                className={twMerge(
-                  'rounded-3xl flex-col ring-1 ring-gray-200 bg-gray-100 flex overflow-clip'
-                )}
-              >
-                <Field.Sheet
-                  className={twMerge(
-                    'bg-white rounded-3xl overflow-clip ring-1 ring-gray-200 flex-col gap-3'
-                  )}
-                >
-                  <Textarea placeholder={"What's up?"} />
-                  <div className='p-2 min-h-28 flex flex-col justify-end'>
-                    <div
-                      id={'post-box'}
-                      className='flex gap-2 justify-end items-stretch'
+            <Form className='bg-white rounded-3xl overflow-clip ring-1 ring-gray-200 flex-col gap-3'>
+              <Field name='message'>
+                <Field.Sheet className='ring-0'>
+                  <Textarea
+                    rows={1}
+                    placeholder={"What's up?"}
+                  />
+                </Field.Sheet>
+                <div className='p-2 min-h-28 flex flex-col justify-end'>
+                  <div
+                    id={'post-box'}
+                    className='flex gap-2 justify-end items-stretch'
+                  >
+                    <Button
+                      onClick={() => handleSchedule()}
+                      className={'bg-gray-200 text-gray-900 p-2'}
                     >
-                      <Button
-                        onClick={() => handleSchedule()}
-                        className={'bg-gray-200 text-gray-900 p-2'}
-                      >
-                        <CalenderIcon />
-                      </Button>
-                      <Button id='post-btn'>Post</Button>
-                    </div>
+                      <CalenderIcon />
+                    </Button>
+                    <Button id='post-btn'>Post</Button>
+                  </div>
 
-                    <div
-                      id='schedule-box'
-                      className='flex gap-2 justify-center items-center flex-col-reverse'
-                    >
-                      <Button className='scaleX'>Schedule</Button>
-                      <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX flex gap-1'>
-                        <Field
-                          name='startTime'
-                          className='w-full'
-                        >
-                          <Field.Sheet className='rounded-full w-full'>
-                            <Select>
-                              <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
-                                <Select.Value className='text-lg'>
-                                  {(value) => {
-                                    return `${value.hour}:${
-                                      value.minute < 10
-                                        ? '0' + value.minute
-                                        : value.minute
-                                    } ${value.meridian.toUpperCase()}`;
-                                  }}
-                                </Select.Value>
-                              </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
-                                <TimePicker fieldName='startTime' />
-                              </Select.Content>
-                            </Select>
-                          </Field.Sheet>
-                        </Field>
-                        <Field
-                          name='endTime'
-                          className='w-full'
-                        >
-                          <Field.Sheet className='rounded-full w-full'>
-                            <Select>
-                              <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
-                                <Select.Value className='text-lg'>
-                                  {(value) => {
-                                    return `${value.hour}:${
-                                      value.minute < 10
-                                        ? '0' + value.minute
-                                        : value.minute
-                                    } ${value.meridian.toUpperCase()}`;
-                                  }}
-                                </Select.Value>
-                              </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
-                                <TimePicker fieldName='endTime' />
-                              </Select.Content>
-                            </Select>
-                          </Field.Sheet>
-                        </Field>
-                        <Button
-                          onClick={() => setIsHidden(true)}
-                          className={'bg-transparent p-1.5 text-gray-500'}
-                        >
-                          <DismissIcon />
-                        </Button>
-                      </div>
+                  <div
+                    id='schedule-box'
+                    className='flex gap-2 justify-center items-center flex-col-reverse'
+                  >
+                    <Button className='scaleX'>Schedule</Button>
+                    <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX flex gap-1'>
+                      <Field
+                        name='startTime'
+                        className='w-full'
+                      >
+                        <Field.Sheet className='rounded-full w-full'>
+                          <Select>
+                            <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
+                              <Select.Value className='text-lg'>
+                                {(value) => {
+                                  return `${value.hour}:${
+                                    value.minute < 10
+                                      ? '0' + value.minute
+                                      : value.minute
+                                  } ${value.meridian.toUpperCase()}`;
+                                }}
+                              </Select.Value>
+                            </Select.Trigger>
+                            <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
+                              <TimePicker fieldName='startTime' />
+                            </Select.Content>
+                          </Select>
+                        </Field.Sheet>
+                      </Field>
+                      <Field
+                        name='endTime'
+                        className='w-full'
+                      >
+                        <Field.Sheet className='rounded-full w-full'>
+                          <Select>
+                            <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
+                              <Select.Value className='text-lg'>
+                                {(value) => {
+                                  return `${value.hour}:${
+                                    value.minute < 10
+                                      ? '0' + value.minute
+                                      : value.minute
+                                  } ${value.meridian.toUpperCase()}`;
+                                }}
+                              </Select.Value>
+                            </Select.Trigger>
+                            <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
+                              <TimePicker fieldName='endTime' />
+                            </Select.Content>
+                          </Select>
+                        </Field.Sheet>
+                      </Field>
+                      <Button
+                        onClick={() => setIsHidden(true)}
+                        className={'bg-transparent p-1.5 text-gray-500'}
+                      >
+                        <DismissIcon />
+                      </Button>
                     </div>
                   </div>
-                </Field.Sheet>
+                </div>
                 <div
                   id='notification'
                   className='p-1.5 mt-[-32px] opacity-0 -z-10'
