@@ -116,9 +116,9 @@ const App = () => {
                                 </Select.Value>
                               </Select.Trigger>
                               <Select.Content className='bg-white rounded-2xl'>
-                                <div className='grid grid-cols-3 w-full items-start h-64 overflow-y-scroll'>
+                                {/* <div className='grid grid-cols-3 w-full items-start h-64 overflow-y-scroll'>
                                   <Scrub />
-                                </div>
+                                </div> */}
                                 <TimePicker />
                               </Select.Content>
                             </Select>
