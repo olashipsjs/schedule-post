@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from './components/button/Button';
-import useField from './components/field/hook';
 import Field from './components/field/Field';
 import { twMerge } from 'tailwind-merge';
 
 const hours = Array.from({ length: 12 }, (_, i) => i + 1);
-const minutes = Array.from({ length: 60 }, (_, i) => i + 1);
+const minutes = Array.from({ length: 60 }, (_, i) => i);
 const meridians = ['am', 'pm'];
 
 const Scrub = () => {
