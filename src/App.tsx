@@ -52,7 +52,7 @@ const App = () => {
   };
 
   return (
-    <main className='flex flex-col items-center justify-center bg-gray-50 min-h-screen'>
+    <main className='flex flex-col items-center justify-end bg-gray-50 min-h-screen'>
       <section className='w-full'>
         <div className='max-w-[400px] mx-auto p-3 w-full'>
           <Formik

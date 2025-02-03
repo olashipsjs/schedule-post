@@ -118,7 +118,7 @@ const Content = ({
         width: rect?.width || 0,
         top: position === 'bottom' ? rect.bottom + 8 : undefined,
         bottom:
-          position === 'top' ? window.innerHeight - (rect.top + 8) : undefined,
+          position === 'top' ? window.innerHeight - (rect.top - 12) : undefined,
       }}
     />
   );
