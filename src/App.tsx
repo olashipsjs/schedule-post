@@ -10,6 +10,7 @@ import CalenderIcon from './components/icons/CalenderIcon';
 import { useGSAP } from '@gsap/react';
 import Select from './components/select/Select';
 import Scrub from './Scrub';
+import TimePicker from './Picker';
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
 
@@ -118,6 +119,7 @@ const App = () => {
                                 <div className='grid grid-cols-3 w-full items-start h-64 overflow-y-scroll'>
                                   <Scrub />
                                 </div>
+                                <TimePicker />
                               </Select.Content>
                             </Select>
                           </Field.Sheet>
