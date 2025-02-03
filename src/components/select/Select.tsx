@@ -6,6 +6,8 @@ import useOverlay from '../../overlay/hook';
 import { twMerge } from 'tailwind-merge';
 import SelectProvider from './Provider';
 import useSelect from './hook';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 const Compound = ({
   className,
@@ -74,7 +76,18 @@ const Content = ({
   ...restProps
 }: React.ComponentProps<typeof Overlay.Content>) => {
   const { isOpen } = useOverlay();
+  const contentRef = React.useRef<HTMLDivElement>(null!);
   const { rect, position, setPosition } = useSelect();
+
+  useGSAP(() => {
+    const element = contentRef.current;
+
+    gsap.to(element, {
+      width: isOpen ? '100%' : '90%',
+      ease: 'back.inOut',
+      duration: 2,
+    });
+  }, [isOpen]);
 
   React.useEffect(() => {
     if (isOpen && rect) {
@@ -88,11 +101,10 @@ const Content = ({
     }
   }, [isOpen, rect]);
 
-  if (!rect) return null;
-
   return (
     <Overlay.Content
       {...restProps}
+      ref={contentRef}
       className={twMerge(
         'ring-1 ring-gray-200 shadow-lg shadow-gray-200',
         className
@@ -102,9 +114,11 @@ const Content = ({
         left: rect?.left || 0,
         right: rect?.right || 0,
         width: rect?.width || 0,
-        top: position === 'bottom' ? rect.bottom + 8 : undefined,
+        top: position === 'bottom' ? rect?.bottom || 0 + 8 : undefined,
         bottom:
-          position === 'top' ? window.innerHeight - (rect.top + 8) : undefined,
+          position === 'top'
+            ? window.innerHeight - (rect?.top || 0 + 8)
+            : undefined,
       }}
     />
   );
