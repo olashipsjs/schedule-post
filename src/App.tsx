@@ -126,9 +126,11 @@ const App = () => {
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
-                                <TimePicker fieldName='startTime' />
-                              </Select.Content>
+                              {isHidden ? null : (
+                                <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
+                                  <TimePicker fieldName='startTime' />
+                                </Select.Content>
+                              )}
                             </Select>
                           </Field.Sheet>
                         </Field>
@@ -149,9 +151,11 @@ const App = () => {
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
-                                <TimePicker fieldName='endTime' />
-                              </Select.Content>
+                              {isHidden ? null : (
+                                <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
+                                  <TimePicker fieldName='endTime' />
+                                </Select.Content>
+                              )}
                             </Select>
                           </Field.Sheet>
                         </Field>
