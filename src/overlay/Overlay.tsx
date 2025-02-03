@@ -66,6 +66,8 @@ const Content = ({ className, ...restProps }: React.ComponentProps<'div'>) => {
     });
   }, [isOpen]);
 
+  if (!isOpen) return;
+
   return createPortal(
     <div
       ref={ref}
