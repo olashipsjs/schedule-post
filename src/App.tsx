@@ -105,19 +105,19 @@ const App = () => {
                         >
                           <Field.Sheet className='rounded-full w-full'>
                             <Select>
-                              <Select.Trigger className='bg-transparent text-gray-900 w-full'>
-                                <Select.Value>
+                              <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
+                                <Select.Value className='text-lg'>
                                   {(value) => {
                                     return `${value.hour}:${
-                                      value.minute
+                                      value.minute < 10
+                                        ? '0' + value.minute
+                                        : value.minute
                                     } ${value.meridian.toUpperCase()}`;
                                   }}
                                 </Select.Value>
                               </Select.Trigger>
-                              <Select.Content className='bg-white rounded-2xl'>
-                                <div className='grid grid-cols-3 w-full items-start h-64 overflow-y-scroll'>
-                                  <Scrub />
-                                </div>
+                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 w-full items-start h-64 overflow-y-scroll no-scrollbar'>
+                                <Scrub />
                               </Select.Content>
                             </Select>
                           </Field.Sheet>

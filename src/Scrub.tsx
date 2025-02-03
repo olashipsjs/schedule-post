@@ -10,7 +10,7 @@ const meridians = ['am', 'pm'];
 const Scrub = () => {
   return (
     <React.Fragment>
-      <div className='relative space-y-1 w-full text-center text-2xl leading-0 font-medium text-gray-500 p-2'>
+      <div className='space-y-1 w-full p-2'>
         {hours.map((hour) => {
           return (
             <Field name='start.hour'>
@@ -34,7 +34,7 @@ const Scrub = () => {
           );
         })}
       </div>
-      <div className='w-full text-center text-2xl leading-0 font-medium text-gray-500 p-2 space-y-1'>
+      <div className='w-full p-2 space-y-1'>
         {minutes.map((minute) => {
           return (
             <Field name='start.minute'>
@@ -58,10 +58,10 @@ const Scrub = () => {
           );
         })}
       </div>
-      <div className='w-full text-center text-2xl leading-0 font-medium text-gray-500 uppercase p-2 space-y-1'>
+      <div className='w-full p-2 space-y-1'>
         {meridians.map((meridian) => {
           return (
-            <Field name='start.minute'>
+            <Field name='start.meridian'>
               {({ field, helper }) => {
                 const currentMeridian = field.value === meridian;
 
