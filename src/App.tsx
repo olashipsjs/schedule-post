@@ -9,7 +9,6 @@ import DismissIcon from './components/icons/DismissIcon';
 import CalenderIcon from './components/icons/CalenderIcon';
 import { useGSAP } from '@gsap/react';
 import Select from './components/select/Select';
-import Scrub from './TimePicker';
 import TimePicker from './TimePicker';
 const App = () => {
   const [isHidden, setIsHidden] = React.useState(true);
@@ -64,11 +63,11 @@ const App = () => {
               startTime: {
                 hour: date.getHours(),
                 minute: date.getMinutes(),
-                meridian: 'AM',
+                meridian: 'am',
               },
               endTime: {
-                hour: 9,
-                minute: 45,
+                hour: date.setHours(date.getHours() + 2),
+                minute: date.getMinutes(),
                 meridian: 'am',
               },
             }}
@@ -109,6 +108,29 @@ const App = () => {
                       <div className='bg-gray-100 p-0.5 w-full rounded-full scaleX flex'>
                         <Field
                           name='startTime'
+                          className='w-full'
+                        >
+                          <Field.Sheet className='rounded-full w-full'>
+                            <Select>
+                              <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
+                                <Select.Value className='text-lg'>
+                                  {(value) => {
+                                    return `${value.hour}:${
+                                      value.minute < 10
+                                        ? '0' + value.minute
+                                        : value.minute
+                                    } ${value.meridian.toUpperCase()}`;
+                                  }}
+                                </Select.Value>
+                              </Select.Trigger>
+                              <Select.Content className='bg-white rounded-2xl grid grid-cols-3 items-start h-64 overflow-y-scroll no-scrollbar'>
+                                <TimePicker fieldName='startTime' />
+                              </Select.Content>
+                            </Select>
+                          </Field.Sheet>
+                        </Field>
+                        <Field
+                          name='endTime'
                           className='w-full'
                         >
                           <Field.Sheet className='rounded-full w-full'>
