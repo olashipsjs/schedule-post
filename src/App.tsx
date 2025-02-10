@@ -117,7 +117,7 @@ const App = () => {
                             >
                               <Field.Sheet className='rounded-full w-full'>
                                 <Select>
-                                  <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
+                                  <Select.Trigger className='bg-transparent text-gray-900 w-full py-2 hover:bg-gray-50'>
                                     <Select.Value className='text-base'>
                                       {(value) => {
                                         return `${value.hour}:${
@@ -142,7 +142,7 @@ const App = () => {
                             >
                               <Field.Sheet className='rounded-full w-full'>
                                 <Select>
-                                  <Select.Trigger className='bg-transparent text-gray-900 w-full py-1'>
+                                  <Select.Trigger className='bg-transparent text-gray-900 w-full py-2 hover:bg-gray-50'>
                                     <Select.Value className='text-base'>
                                       {(value) => {
                                         return `${value.hour}:${
